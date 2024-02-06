@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoLife - Formations en ligne</title>
+    <link rel="icon" href="logo_cryptolife.webp" type="image/x-icon">
+</head>
+
+<style>
+
+    @media only screen and (max-width: 1200px) {
+        .logo img {
+            height: 50px; /* Ajuster la taille du logo pour une meilleure adaptation sur les petits écrans */
+            margin-left: -120px;
+        }
+
+        .acheter {
+            font-size: small; /* Réduire la taille du texte "ACHETER" sur les petits écrans */
+            margin-right: -10px;
+        }
+
+        .places-restantes{
+            margin-left: -40px;
+            margin-right: 5px;
+        }
+
+
+        .main-title h1 {
+            font-size: 24px; /* Réduire la taille de la police du titre */
+        }
+
+        .main-title p {
+            font-size: 14px; /* Réduire la taille de la police du paragraphe */
+        }
+
+        .image-container {
+            text-align: center;
+            margin-top: 50px;
+            border-radius: 20px; /* Coins arrondis */
+            overflow: hidden; /* Pour cacher les coins des images qui dépassent */
+        }
+
+        .image-container img {
+            max-width: 100%; /* L'image occupe toute la largeur de son conteneur */
+            height: auto; /* La hauteur est ajustée automatiquement pour conserver les proportions */
+        }
+
+        .section-content img {
+            margin-top: 100px;
+        }
+
+        .section-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column; /* Ajoutez cette ligne pour aligner les éléments verticalement */
+        }
+
+        .tabs-section {
+            flex-direction: column;
+        }
+
+        .tab {
+            padding: 15px; /* Réduire le padding des onglets */
+            margin: 10px;
+        }
+
+        .separator {
+            margin: 20px;
+        }
+
+        .footer-content .contact {
+            margin-bottom: 50px;
+        }
+
+        .logo-footer {
+            width: 50px; /* Ajuster la taille du logo du pied de page */
+        }
+    }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #020004ef;
+    color: #fff;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.logo {
+    display: flex; /* Utiliser flexbox pour centrer horizontalement */
+    align-items: center;
+    margin-left: 120px;
+}
+
+.logo img {
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+
+
+.bulle {
+    position: absolute;
+    left: 18px; /* Déplacer le point à l'intérieur du bord */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.badge {
+    display: inline-block;
+    padding-top: 7px;
+    padding-bottom: 7px; 
+    padding-left: 40px;
+    padding-right: 20px;
+    border: 1px solid #c7c2c571;
+    border-radius: 30px;
+    position: relative; /* Pour positionner le point */
+    transition: border 0.3s ease; /* Définir une transition pour l'opacité du bord */
+    font-size: small;
+    opacity: 0.7;
+    cursor: pointer; /* Rendre le texte cliquable */
+}
+
+.places-restantes:hover .badge {
+    border-color: #c7c2c5; /* Changer la couleur du bord au survol */
+    border: 1; /* Augmenter l'opacité du bord */
+    opacity: 1;
+}
+
+span {
+    color: white;
+}
+
+/* Animation pour le point */
+@keyframes blink {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.5;
+    }
+}
+
+.bulle {
+    width: 10px;
+    height: 10px;
+    background-color: #ff00dd;
+    border-radius: 50%;
+    animation: blink 1s infinite alternate;
+}
+
+.acheter {
+    margin-right: 120px;
+    background-color: #1f1920;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.256);
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 15px;
+    opacity: 0.7; /* Opacité initiale */
+    transition: opacity 0.3s ease; /* Définir une transition pour l'opacité */
+    transition: box-shadow 0.3s ease;
+    transition: background-color 0.3 ease;
+    text-decoration: none;
+}
+
+.acheter:hover {
+    background-color: #555359;
+    opacity: 1; /* Opacité maximale au survol */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.915); /* Ajouter un halo dès le départ */
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.formule {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+}
+
+.formule h2 {
+    margin-top: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+@keyframes flipInFromTop {
+    from {
+        transform: perspective(400px) rotateX(-90deg) scale(0.1);
+        opacity: 0;
+    }
+    50% {
+        transform: perspective(400px) rotateX(0deg) scale(1.05);
+    }
+    100% {
+        transform: perspective(400px) rotateX(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+.main-title {
+    text-align: center;
+    margin-top: 100px; /* Ajustez la marge selon vos besoins */
+    animation: flipInFromTop 1s ease-out;
+}
+
+.main-title h1 {
+    font-size: 72px; /* Taille de police super grande */
+    margin-bottom: 20px; /* Espace sous le titre principal */
+}
+
+.main-title p {
+    opacity: 0.7; /* Opacité plus faible pour le sous-titre */
+    font-size: 20px; /* Taille de police plus petite pour le sous-titre */
+    margin-top: 60px;
+}
+
+.lien {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.256);
+    padding: 15px 40px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 15px;
+    box-shadow: 0 0 20px rgba(176, 19, 215, 0.915); /* Ajouter un halo dès le départ */
+    transition: opacity 0.3s ease, box-shadow 0.3s ease; /* Définir une transition pour l'opacité et le box-shadow */
+    text-decoration: none;
+}
+
+.lien:hover {
+    background-color: #ffffff;
+    opacity: 1; /* Opacité maximale au survol */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Ajouter un halo lors du survol */
+}
+
+.image-container {
+    text-align: center;
+    margin-top: 50px;
+    border-radius: 20px; /* Coins arrondis */
+    overflow: hidden; /* Pour cacher les coins des images qui dépassent */
+}
+
+@keyframes flipInFromBottom {
+    from {
+        transform: perspective(400px) rotateX(90deg) scale(0.1);
+        opacity: 0;
+    }
+    50% {
+        transform: perspective(400px) rotateX(0deg) scale(1.05);
+    }
+    100% {
+        transform: perspective(400px) rotateX(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Ajout de l'animation à l'image principale */
+.image-container img {
+    animation: flipInFromBottom 1s ease-out;
+}
+
+.bottom-section {
+    text-align: center;
+    padding: 50px 0;
+    color: #fff;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #ffffff, #12b4c9, #ff00ea, #e851c3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bottom-section h2 {
+    font-size: 20px;
+    margin-top: 60px;
+}
+
+.bottom-section p {
+    font-size: 38px;
+    margin-top: -10px;
+}
+
+.section-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.section-content {
+    text-align: center;
+    margin: 0 20px;
+    margin-top: -80px;
+
+}
+
+.section-content img {
+    width: 100px; /* Ajustez la taille de l'image selon vos besoins */
+    border-radius: 10px; /* Coins arrondis */
+    margin-bottom: -50px;
+}
+
+.section-content h2 {
+    color: #ffffff; /* Couleur du titre */
+    font-size: 24px; /* Taille du titre */
+    margin-bottom: 30px;
+}
+
+.section-content p {
+    opacity: 0.8; /* Opacité du paragraphe */
+    font-size: 16px; /* Taille du paragraphe */
+    line-height: 1.5; /* Espacement entre les lignes */
+    margin: 70px;
+    margin-top: -20px;
+}
+
+.button-COMMENCE {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.256);
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: small;
+    box-shadow: 0 0 20px rgba(176, 19, 215, 0.915); /* Ajouter un halo dès le départ */
+    transition: opacity 0.3s ease, box-shadow 0.3s ease; /* Définir une transition pour l'opacité et le box-shadow */
+    text-decoration: none;
+}
+
+.button-COMMENCE:hover {
+    background-color: #ffffff;
+    opacity: 1; /* Opacité maximale au survol */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Ajouter un halo lors du survol */
+}
+
+@keyframes rotateIn {
+    from {
+        transform: rotateY(-360deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotateY(0);
+        opacity: 1;
+    }
+}
+
+.tabs-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.tab {
+    text-align: center;
+    margin: 0 20px;
+    padding: 70px;
+    border-radius: 50px;
+    background-color: rgb(44, 44, 44);
+    color: rgb(255, 255, 255);
+    animation: rotateIn 0.6s ease-in-out; /* Animation de rotation */
+    transition: transform 0.3s ease; /* Transition pour l'agrandissement */
+}
+
+.tab:hover {
+    transform: scale(1.05); /* Agrandir de 5% au survol */
+}
+
+.tab button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 20px 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 20px;
+    transition: opacity 0.3s ease, box-shadow 0.3s ease; /* Définir une transition pour l'opacité et le box-shadow */
+}
+
+.tab button:hover {
+    opacity: 1; /* Opacité maximale au survol */
+}
+
+.tab h3 {
+    margin: 10px 0;
+}
+
+.price {
+    font-size: 60px;
+    margin-top: 5px;
+}
+
+ul {
+    text-align: left;
+    margin-top: -40px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.start-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.start-button.basic {
+    margin-top: 40px;
+    background-color: rgb(121, 124, 136);
+}
+
+.start-button.basic:hover {
+    background-color: rgba(233, 206, 53, 0.842);
+    box-shadow: 0 0 20px rgba(255, 217, 0, 0.678); /* Ajoute une ombre gold au survol */
+}
+
+.start-button.premium:hover {
+    background-color: rgba(233, 206, 53, 0.842);
+    box-shadow: 0 0 20px rgba(255, 217, 0, 0.678); /* Ajoute une ombre gold au survol */
+}
+
+.start-button.group-call:hover {
+    background-color: rgba(233, 206, 53, 0.842);
+    box-shadow: 0 0 20px rgba(255, 217, 0, 0.678); /* Ajoute une ombre gold au survol */
+}
+
+.start-button.group-call {
+    background-color: rgb(121, 124, 136);
+    margin-top: 40px;
+}
+
+.start-button.premium {
+    background-color: rgb(121, 124, 136);
+    color: rgb(255, 255, 255);
+}
+
+.tab.premium {
+    color: white;
+    animation: rotateIn 0.8s ease-in-out; /* Animation de rotation */
+}
+
+.tab.premium:hover {
+    box-shadow: 0 0 20px gold; /* Ajoute une ombre gold au survol */
+}
+
+.tab:hover {
+    box-shadow: 0 0 20px gold; /* Ajoute une ombre gold au survol */
+    border:solid #ffdb3b;
+}
+
+.separator {
+    margin: 200px;
+    margin-bottom: 0px;
+    border: none;
+    border-top: 1px solid #ffffff80; /* Couleur du séparateur avec opacité */
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    margin: 0 10px;
+}
+
+.social-icons img {
+    width: 50px; /* Taille des icônes sociales */
+    height: auto;
+}
+
+.footer-content .copyright {
+    opacity: 0.5;
+    margin-top: 20px;
+}
+
+.footer-content .contact {
+    opacity: 0.5;
+    margin-top: -5px;
+    margin-bottom: 100px;
+}    
+
+.infos {
+    opacity: 0.5;
+    margin-top: -90px;
+    margin-bottom: 100px;
+}
+
+.logo-footer {
+    height: 70px; /* Ajustez la taille du logo selon vos besoins */
+    border-radius: 50%; /* Rendre l'image ronde */
+    overflow: hidden; /* Assurer que l'image reste dans le cadre rond */
+    margin-bottom: 50px;
+}
+
+</style>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo_cryptolife.webp" alt="Logo CryptoLife">
+        </div>
+        <div class="places-restantes">
+            <div class="badge">
+                <div class="bulle"></div>
+                <span><strong>Place disponibles</strong></span>
+            </div>
+        </div>
+        
+        <a href="#tabs-section" class="acheter"><strong>ACHETER</strong></a>
+
+    </header>
+
+    <section class="main-title">
+        <h1>Only degen make Money.</h1>
+        <p>Commence dès maintenant juste ici</p>
+        <a href="#tabs-section" class="lien"><strong>COMMENCER  🫵</strong></a>
+    </section>
+
+    <div class="image-container">
+        <img src="img-main.webp" alt="Description de l'image">
+    </div>
+
+    <section class="bottom-section">
+        <h2 class="gradient-text">Tu veux réussir ?</h2>
+        <strong><p>Voici le nouveau business qui peut te permettre de gagner + de 10k/mois</p></strong>
+    </section>
+
+    <section class="bottom-section">
+        <div class="section-container">
+            <div class="section-content">
+                <img src="lowcap.svg" alt="Image LowCap">
+                <h2>LowCap</h2>
+                <strong><p>Avant d'être disponibles sur des plateformes majeures telles que<br>Binance ou Bybit, les nouvelles cryptomonnaies sont souvent lancées<br>sur des échanges plus modestes. Investir dans ces "tokens à faible<br>capitalisation" à ce stade précoce peut rapporter d'énormes gains,<br>parfois de 200-300% ou même plus de 1000% dès leur première<br>cotation.</p></strong>
+            </div>
+            <div class="section-content">
+                <img src="formation.svg" alt="Image Formation">
+                <h2>Formation</h2>
+                <strong><p>Dans cette formation vous verrez les différentes règles et principes<br>pour réussir à trader des Lowcap, vous verrez également les outils<br>nécessaires et les stratégies qui permettent d'être rentable dans le<br>business des cryptomonnaies à faible capitalisation, cette formation<br>pourra se suivre de canal de discussion et de call pour que vous<br>puissiez générer des revenus.</p></strong>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="tabs-section" id="tabs-section">
+        <div class="tab">
+            <h3>Formation Basique</h3>
+            <strong><p class="price">47€</p></strong>
+            <ul>
+                <li>● 3 modules de formation</li>
+                <li>● 3 vidéos explicatives</li>
+                <li>● Canal de discussion FR</li>
+            </ul>
+            <a href="achat-basic.html"><button class="start-button basic"><strong>Commencer</strong></button></a>
+        </div>
+
+        <div class="tab premium">
+            <h3>Formation Premium</h3>
+            <strong><p class="price">147€</p></strong>
+            <ul>
+                <li>● 3 Groupe privé Lowcap</li>
+                <li>● 5/5 modules de formation</li>
+                <li>● 5/5 Vidéo explicatives</li>
+                <li>● Service accompagnement</li>
+            </ul>
+            <a href="achat-premium.html"><button class="start-button premium"><strong>Commencer</strong></button></a>
+        </div>
+
+        <div class="tab">
+            <h3>Groupe Call</h3>
+            <strong><p class="price">34,99€</p></strong>
+            <ul>
+                <li>● Groupe privé long terme</li>
+                <li>● Groupe privé crypto x10 x100</li>
+                <li>● Groupe privé Lowcap</li>
+            </ul>
+            <a href="achat-call.html"><button class="start-button group-call"><strong>Commencer</strong></button></a>
+        </div>
+    </section>
+    
+    <hr class="separator">
+<footer>
+    <div class="footer-content">
+        <img src="logo_cryptolife.webp" class="logo-footer" width="70px" alt="Logo CryptoLife">
+        <div class="social-icons">
+            <a href="https://x.com/y7cee?s=21&t=pQ4r2_lA6f1ctg_Z_hLL9w"><img src="X.png" alt="Twitter"></a>
+            <a href="https://www.instagram.com/y7ceex?igsh=MWtyajNxbTU2eXNjaQ=="><img src="insta.png" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/@y7ceex?_t=8jc4N5xI1r6&_r=1"><img src="tiktok.png" alt="TikTok"></a>
+            <a href="https://t.me/cryptolifesol"><img src="telegram.png" alt="Telegram"></a>
+        </div>
+        <p class="copyright">© 2023 CryptoLife. All rights reserved.</p>
+        <p class="contact">Pour plus de Question contacter cryptolifesol@gmail.com</p>
+        <p class="infos">En cas de problème contacter cryptolifesol@gmail.com</p>
+    </div>
+</footer>
+
+</body>
+</html>

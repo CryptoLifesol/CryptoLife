@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de paiement - CryptoLife</title>
+    <link rel="icon" href="logo_cryptolife.webp" type="image/x-icon">
+</head>
+
+<style>
+/* Styles spécifiques au header */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #020004ef;
+    color: #fff;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    margin-bottom: 100px;
+}
+
+.logo {
+    margin-left: 120px;
+}
+
+.logo img {
+    height: 70px; /* Ajustez la taille du logo selon vos besoins */
+    border-radius: 50%; /* Rendre l'image ronde */
+    overflow: hidden; /* Assurer que l'image reste dans le cadre rond */
+}
+
+.bulle {
+    position: absolute;
+    left: 18px; /* Déplacer le point à l'intérieur du bord */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.badge {
+    display: inline-block;
+    padding-top: 7px;
+    padding-bottom: 7px; 
+    padding-left: 40px;
+    padding-right: 20px;
+    border: 1px solid #c7c2c571;
+    border-radius: 30px;
+    position: relative; /* Pour positionner le point */
+    transition: border 0.3s ease; /* Définir une transition pour l'opacité du bord */
+    font-size: small;
+    opacity: 0.7;
+    cursor: pointer; /* Rendre le texte cliquable */
+}
+
+.places-restantes:hover .badge {
+    border-color: #c7c2c5; /* Changer la couleur du bord au survol */
+    border: 1; /* Augmenter l'opacité du bord */
+    opacity: 1;
+}
+
+span {
+    color: white;
+}
+
+/* Animation pour le point */
+@keyframes blink {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.5;
+    }
+}
+
+.bulle {
+    width: 10px;
+    height: 10px;
+    background-color: #ff00dd;
+    border-radius: 50%;
+    animation: blink 1s infinite alternate;
+}
+
+/* Bouton d'achat */
+.acheter {
+    margin-right: 120px;
+    background-color: #1f1920;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.256);
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 15px;
+    opacity: 0.7; /* Opacité initiale */
+    transition: opacity 0.3s ease; /* Définir une transition pour l'opacité */
+    transition: box-shadow 0.3s ease;
+    transition: background-color 0.3 ease;
+    text-decoration: none;
+}
+
+.acheter:hover {
+    background-color: #555359;
+    opacity: 1; /* Opacité maximale au survol */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.915); /* Ajouter un halo dès le départ */
+}
+
+/* Separator */
+.separator {
+    margin: 200px;
+    margin-bottom: 0px;
+    border: none;
+    border-top: 1px solid #ffffff80; /* Couleur du séparateur avec opacité */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    margin: 0 10px;
+}
+
+.social-icons img {
+    width: 50px; /* Taille des icônes sociales */
+    height: auto;
+}
+
+.footer-content .copyright {
+    opacity: 0.5;
+    margin-top: 20px;
+}
+
+.logo-footer {
+    height: 70px; /* Ajustez la taille du logo selon vos besoins */
+    border-radius: 50%; /* Rendre l'image ronde */
+    overflow: hidden; /* Assurer que l'image reste dans le cadre rond */
+    margin-bottom: 50px;
+}
+
+.confirmation-message {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.confirmation-message p {
+    font-size: large;
+    margin-bottom: 20px;
+}
+
+.confirmation-message a {
+    color: #ff00dd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.confirmation-message a:hover {
+    color: #ff0099;
+}
+
+.footer-content .contact {
+    opacity: 0.5;
+    margin-top: -5px;
+    margin-bottom: 100px;
+}    
+</style>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo_cryptolife.webp" alt="Logo CryptoLife">
+        </div>
+        <div class="places-restantes">
+            <div class="badge">
+                <div class="bulle"></div>
+                <span><strong>Place disponibles</strong></span>
+            </div>
+        </div>
+        <!-- Bouton "Acheter" -->
+        <a href="index.html" class="acheter"><strong>ACHETER</strong></a>
+    </header>
+
+    <div class="confirmation-message">
+        <p>Merci d'avoir choisi notre formation !</p>
+        <p>Vous pouvez accéder à la formation en suivant ce lien :</p>
+        <a href="lien_de_la_formation"><strong>Accéder à la formation</strong></a>
+        <p>Un e-mail contenant le lien a également été envoyé à votre adresse e-mail.</p>
+    </div>
+
+    <hr class="separator">
+
+    <footer>
+        <div class="footer-content">
+            <img src="logo_cryptolife.webp" class="logo-footer" width="70px" alt="Logo CryptoLife">
+            <div class="social-icons">
+                <a href="https://x.com/y7cee?s=21&t=pQ4r2_lA6f1ctg_Z_hLL9w"><img src="X.png" alt="Twitter"></a>
+                <a href="https://www.instagram.com/y7ceex?igsh=MWtyajNxbTU2eXNjaQ=="><img src="insta.png" alt="Instagram"></a>
+                <a href="https://www.tiktok.com/@y7ceex?_t=8jc4N5xI1r6&_r=1"><img src="tiktok.png" alt="TikTok"></a>
+                <a href="https://t.me/cryptolifesol"><img src="telegram.png" alt="Telegram"></a>
+            </div>
+            <p class="copyright">© 2023 CryptoLife. All rights reserved.</p>
+            <p class="contact">Pour plus de Question contacter cryptolifesol@gmail.com</p>
+        </div>
+    </footer>
+</body>
+</html>
