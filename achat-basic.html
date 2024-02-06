@@ -38,6 +38,8 @@ header {
     overflow: hidden;
 }
 
+
+
 .bulle {
     position: absolute;
     left: 18px; /* Déplacer le point à l'intérieur du bord */
@@ -111,10 +113,54 @@ span {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.915); /* Ajouter un halo dès le départ */
 }
 
+span {
+    color: white;
+}
+
+/* Animation pour le point */
+@keyframes blink {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.5;
+    }
+}
+
+.bulle {
+    width: 10px;
+    height: 10px;
+    background-color: #ff00dd;
+    border-radius: 50%;
+    animation: blink 1s infinite alternate;
+}
+
+.acheter {
+    margin-right: 50px; /* Réduit la marge */
+    background-color: #1f1920;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.256);
+    padding: 15px 20px; /* Réduit le padding */
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 15px;
+    opacity: 0.7; /* Opacité initiale */
+    transition: opacity 0.3s ease; /* Définir une transition pour l'opacité */
+    transition: box-shadow 0.3s ease;
+    transition: background-color 0.3 ease;
+    text-decoration: none;
+}
+
+.acheter:hover {
+    background-color: #555359;
+    opacity: 1; /* Opacité maximale au survol */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.915); /* Ajouter un halo dès le départ */
+}
+
 /* Separator */
 .separator {
-    margin: 200px;
-    margin-bottom: 0px;
+    margin: 150px; /* Réduit la marge */
     border: none;
     border-top: 1px solid #ffffff80; /* Couleur du séparateur avec opacité */
 }
@@ -186,14 +232,21 @@ footer {
     margin-right: auto;
     max-width: 600px;
     margin-top: 20px;
+    text-align: center; /* Centrer le bouton Stripe */
+}
+
+.paypal-button-container {
+    text-align: center; /* Centrer le bouton PayPal */
+    margin-top: 20px; /* Ajoute de l'espace au-dessus du bouton */
+    margin-bottom: 20px; /* Ajoute de l'espace en dessous du bouton */
 }
 
 .paypal-button {
     background-color: #0070ba;
     color: #fff;
     text-decoration: none;
-    padding: 5px 10px; /* Réduire la taille du bouton */
-    font-size: 14px; /* Réduire la taille de la police */
+    padding: 10px 20px; /* Ajuster la taille du bouton */
+    font-size: 14px; /* Ajuster la taille de la police */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -203,12 +256,8 @@ footer {
     background-color: #005ea6;
 }
 
-.paypal-button-container {
-    text-align: center; /* Centrer le bouton */
-}
-
 @media only screen and (max-width: 600px) {
-        .logo img {
+    .logo img {
             height: 50px; /* Ajuster la taille du logo pour une meilleure adaptation sur les petits écrans */
             margin-left: -120px;
         }
@@ -216,7 +265,6 @@ footer {
         .acheter {
             font-size: small; /* Réduire la taille du texte "ACHETER" sur les petits écrans */
             margin-right: -10px;
-            margin-left: 15px;
         }
 
         .places-restantes{
@@ -234,6 +282,12 @@ footer {
 
         .stripe {
             margin-top: 20px;
+        }
+
+        .paypal-button-container {
+            text-align: center; /* Centrer le bouton PayPal */
+            margin-top: 20px; /* Ajoute de l'espace au-dessus du bouton */
+            margin-bottom: 20px; /* Ajoute de l'espace en dessous du bouton */
         }
     }
 </style>
@@ -265,13 +319,13 @@ footer {
   >
   </stripe-buy-button>
 
+  <div class="paypal-button-container">
+    <a href="https://www.paypal.com/paypalme/cryptolifesol?locale.x=fr_FR" class="paypal-button">Payer avec PayPal</a>
+  </div>
+
   <div class="crypto-payment">
     <h2>Paiement par Crypto</h2>
     <p>Pour payer par crypto, veuillez contacter <strong>@cryptolifesol_support </strong>directement sur Telegram.</p>
-  </div>
-
-  <div class="paypal-button-container">
-    <a href="https://www.paypal.com/paypalme/cryptolifesol?locale.x=fr_FR" class="paypal-button">Payer avec PayPal</a>
   </div>
 
     <hr class="separator">
