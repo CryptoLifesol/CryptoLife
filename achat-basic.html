@@ -38,12 +38,7 @@ header {
     overflow: hidden;
 }
 
-.logo-footer {
-    height: 70px; /* Ajustez la taille du logo selon vos besoins */
-    border-radius: 50%; /* Rendre l'image ronde */
-    overflow: hidden; /* Assurer que l'image reste dans le cadre rond */
-    margin-bottom: 50px;
-}
+
 
 .bulle {
     position: absolute;
@@ -101,51 +96,6 @@ span {
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.256);
     padding: 15px 30px;
-    border-radius: 30px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 15px;
-    opacity: 0.7; /* Opacité initiale */
-    transition: opacity 0.3s ease; /* Définir une transition pour l'opacité */
-    transition: box-shadow 0.3s ease;
-    transition: background-color 0.3 ease;
-    text-decoration: none;
-}
-
-.acheter:hover {
-    background-color: #555359;
-    opacity: 1; /* Opacité maximale au survol */
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.915); /* Ajouter un halo dès le départ */
-}
-
-span {
-    color: white;
-}
-
-/* Animation pour le point */
-@keyframes blink {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0.5;
-    }
-}
-
-.bulle {
-    width: 10px;
-    height: 10px;
-    background-color: #ff00dd;
-    border-radius: 50%;
-    animation: blink 1s infinite alternate;
-}
-
-.acheter {
-    margin-right: 50px; /* Réduit la marge */
-    background-color: #1f1920;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.256);
-    padding: 15px 20px; /* Réduit le padding */
     border-radius: 30px;
     cursor: pointer;
     margin-top: 10px;
